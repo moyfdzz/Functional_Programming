@@ -1,0 +1,21 @@
+(define (get-field field record)
+  (if (null? record)
+    null
+    (if (equal? (car (car record)) field)
+      (cdr (car record))
+      (get-field field (cdr record))
+    )
+  )
+)
+
+(define (get-records table field op condition)
+  (if (null? table)
+    null
+    (let ((value (get-field field (car table))))
+      (if (op (car value) condition)
+        (cons (get-field ’id (car table)) (get-records (cdr table) field op condition))
+        (get-records (cdr table) field op condition)
+      )
+    )
+  )
+)
