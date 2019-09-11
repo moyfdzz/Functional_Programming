@@ -17,9 +17,9 @@
 
 ;;P2 Counting digits
 (define (countDigitsAux x)
-  (if (> (quotient x 10) 1)
-    (+ 1 (countDigitsAux (/ x 10)))
-    
+  (if (< x 10)
+    1
+    (+ 1 (countDigitsAux (quotient x 10)))
   )
 )
 
@@ -29,3 +29,7 @@
     (+ (countDigitsAux (car l)) (countDigits (cdr l)))
   )
 )
+
+(countDigits '())
+(countDigits '(1 2 3 4 100))
+(countDigits '(111 22 3))
