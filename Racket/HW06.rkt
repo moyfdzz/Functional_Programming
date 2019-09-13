@@ -15,7 +15,11 @@
 ;(quickSort '(6 7 2 1 3 4 0 5 9 8))
 
 ;P2 Matrix multiplication
-
+(define (matMult m1 m2)
+  (let (newM2 )
+    
+  )
+)
 
 ;P3 Table Summarization
 (define (heightsAverage tbl)
@@ -44,8 +48,21 @@
 )
 
 ;P4 Binary search trees
-(define (insertBST x BST)
-  
+(define (insert x BST)
+  (if (null? BST)
+    (list x '() '())
+    (if (< (car BST) x)
+      (list (car BST) (cadr BST) (insert x (caddr BST)))
+      (list (car BST) (insert x (cadr BST)) (caddr BST))
+    )
+  )
 )
 
+(insert 1 '()) ; '(1 () ())
+(insert 5 '(1 () ())) ; '(1 () (5 () ()))
+(insert 3 '(1 () (5 () ()))) ; '(1 () (5 (3 () ()) ()))
+(insert 6 '(1 () (5 (3 () ()) ()))) ; '(1 () (5 (3 () ()) (6 () ())))
+(insert 0 '(1 () (5 (3 () ()) (6 () ())))) ; '(1 (0 () ()) (5 (3 () ()) (6 () ())))
+
 ;P5 Is there a path between two specific nodes in a graph?
+;(define (pathExists? graph lst))
