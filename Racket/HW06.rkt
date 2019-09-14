@@ -15,11 +15,10 @@
 ;(quickSort '(6 7 2 1 3 4 0 5 9 8))
 
 ;P2 Matrix multiplication
-(define (matMult m1 m2)
-  (let (newM2 )
-    
-  )
-)
+;(define (matMult m1 m2))
+;(define (matMult m1 m2) (map (lambda (row) (apply map (lambda column (apply + (map * row column))) m2)) m1))
+
+;(matMult '((1 2 3) (4 5 6) (7 8 9)) '((1 2 3) (4 5 6) (7 8 9)))
 
 ;P3 Table Summarization
 (define (heightsAverage tbl)
@@ -33,19 +32,19 @@
   )
 )
 
-(heightsAverage '(
-  ("Male" 178) 
-  ("Female" 165) 
-  ("Female" 158) 
-  ("Female" 182) 
-  ("Male" 161) 
-  ("Male" 175) 
-  ("Female" 182) 
-  ("Male" 188) 
-  ("Male" 169) 
-  ("Female" 156)
-  )
-)
+;(heightsAverage '(
+;  ("Male" 178) 
+;  ("Female" 165) 
+;  ("Female" 158) 
+;  ("Female" 182) 
+;  ("Male" 161) 
+;  ("Male" 175) 
+;  ("Female" 182) 
+;  ("Male" 188) 
+;  ("Male" 169) 
+;  ("Female" 156)
+;  )
+;)
 
 ;P4 Binary search trees
 (define (insert x BST)
@@ -58,11 +57,11 @@
   )
 )
 
-(insert 1 '()) ; '(1 () ())
-(insert 5 '(1 () ())) ; '(1 () (5 () ()))
-(insert 3 '(1 () (5 () ()))) ; '(1 () (5 (3 () ()) ()))
-(insert 6 '(1 () (5 (3 () ()) ()))) ; '(1 () (5 (3 () ()) (6 () ())))
-(insert 0 '(1 () (5 (3 () ()) (6 () ())))) ; '(1 (0 () ()) (5 (3 () ()) (6 () ())))
+;(insert 1 '()) ; '(1 () ())
+;(insert 5 '(1 () ())) ; '(1 () (5 () ()))
+;(insert 3 '(1 () (5 () ()))) ; '(1 () (5 (3 () ()) ()))
+;(insert 6 '(1 () (5 (3 () ()) ()))) ; '(1 () (5 (3 () ()) (6 () ())))
+;(insert 0 '(1 () (5 (3 () ()) (6 () ())))) ; '(1 (0 () ()) (5 (3 () ()) (6 () ())))
 
 ;P5 Is there a path between two specific nodes in a graph?
 ;(define (pathExists? graph lst))
