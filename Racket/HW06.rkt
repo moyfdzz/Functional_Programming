@@ -1,13 +1,13 @@
 #lang racket
 
 ;P1 Quicksort
-(define (quickSort l)
-  (if (null? l)
+(define (quickSort lst)
+  (if (null? lst)
     '()
     (append
-      (quickSort (filter (lambda (x) (<= x (car l))) (cdr l)))
-      (list (car l))
-      (quickSort (filter (lambda (x) (> x (car l))) (cdr l)))
+      (quickSort (filter (lambda (x) (<= x (car lst))) (cdr lst)))
+      (list (car lst))
+      (quickSort (filter (lambda (x) (> x (car lst))) (cdr lst)))
     )
   )
 )
@@ -15,8 +15,9 @@
 ;(quickSort '(6 7 2 1 3 4 0 5 9 8))
 
 ;P2 Matrix multiplication
-;(define (matMult m1 m2))
-;(define (matMult m1 m2) (map (lambda (row) (apply map (lambda column (apply + (map * row column))) m2)) m1))
+(define (matMult m1 m2) 
+  (map (lambda (x) (apply map (lambda y (apply + (map * x y))) m2)) m1)
+)
 
 ;(matMult '((1 2 3) (4 5 6) (7 8 9)) '((1 2 3) (4 5 6) (7 8 9)))
 
@@ -64,4 +65,6 @@
 ;(insert 0 '(1 () (5 (3 () ()) (6 () ())))) ; '(1 (0 () ()) (5 (3 () ()) (6 () ())))
 
 ;P5 Is there a path between two specific nodes in a graph?
-;(define (pathExists? graph lst))
+(define (pathExists? graph lst)
+  (display "Not yet implemented.")
+)
