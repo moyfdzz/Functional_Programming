@@ -89,26 +89,27 @@
 
 ;(intersect '(1 3 5 7 9) '(2 3 5 7))
 
-(define (getElementAt mat x y)
-  (list-ref (list-ref mat x) y)
-)
-
 ;P5 Calculating the determinant
-(define (det3x3 mat)
-	(-
-	
-	(+(+
- 		(((getElementAt mat 0 0)(getElementAt mat 1 1))(getElementAt mat 2 2))
- 		(((getElementAt mat 0 1)(getElementAt mat 1 2))(getElementAt mat 2 0)))
- 		(((getElementAt mat 0 2)(getElementAt mat 1 0))(getElementAt mat 2 1))
-	)
-
-  (+(+
- 	(((getElementAt mat 2 0)(getElementAt mat 1 1))(getElementAt mat 0 2))
- 	(((getElementAt mat 2 1)(getElementAt mat 1 2))(getElementAt mat 0 0)))
- 	(((getElementAt mat 2 2)(getElementAt mat 1 0))(getElementAt mat 0 1)))
-
-  )
+(define (getElementAt mat posX posY)
+  (list-ref (list-ref mat posX) posY)
 )
 
-;(det3x3 '((2 1 3) (4 1 2) (3 9 3)))
+(define (det3x3 mat)  
+    (-
+
+      (+ 
+        (*(getElementAt mat 0 0) (getElementAt mat 1 1) (getElementAt mat 2 2))
+        (*(getElementAt mat 0 1) (getElementAt mat 1 2) (getElementAt mat 2 0))
+        (*(getElementAt mat 0 2) (getElementAt mat 1 0) (getElementAt mat 2 1))
+      )
+
+      (+
+				(*(getElementAt mat 2 0) (getElementAt mat 1 1) (getElementAt mat 0 2))
+				(*(getElementAt mat 2 1) (getElementAt mat 1 2) (getElementAt mat 0 0))
+				(*(getElementAt mat 2 2) (getElementAt mat 1 0) (getElementAt mat 0 1))
+      )
+			
+    )
+)
+
+(det3x3 '((2 1 3) (4 1 2) (3 9 3)))
