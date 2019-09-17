@@ -9,6 +9,8 @@
 ;; Make sure that nothing additional is printed as the result of running this file. Avoid printing names, student IDs, or any other messages. If you print anything else, the system will wrongly grade your solutions.
 ;; If your file cannot be loaded by the Racket interpreted, your grade will be zero. Then, submit only code that works.
 
+;Moisés Fernández A01197049
+
 ;P1 Does the element exist?
 (define (exist? x lst)
   (if (null? lst)
@@ -37,21 +39,76 @@
 
 ;P3 All different
 (define (allDifferent? lst)
-	(display "Not yet implemented.")
+	(if (null? lst)
+		#t
+		(if (exist? (car lst) (cdr lst))
+			#f
+			(allDifferent? (cdr lst))
+		)
+	)
 )
 
+;(allDifferent? '(1 2 3 4 5 66 66))
+
+;P4.1 Set
 (define (set x)
-	(display "Not yet implemented.")
+	(if (null? x)
+		'()
+		(if (number? (car x))
+			(if (exist? (car x) (cdr x))
+				(set (cdr x))
+				(cons (car x) (set (cdr x)))
+			)
+			(set (cdr x))
+		)
+	)
 )
 
+;(set '(1 2 2 2 2 3 2))
+
+;P4.2 Union
 (define (union x y)
-	(display "Not yet implemented.")
+	(set (append x y))
 )
 
+;(union '(1 3 5 7 9) '(2 3 5 7))
+
+;P4.3 Intersection
 (define (intersect x y)
-  	(display "Not yet implemented.")
+  (let ((setX (set x)) 
+      	(setY (set y)))
+    (if  (null? setX)
+      '()
+      (if (exist? (car setX) setY)
+        (cons (car setX) (intersect (cdr x) (cdr y)))
+        (intersect (cdr x) y)
+      )
+    )
+  )
 )
 
-(define (det3x3 m)
-	(display "Not yet implemented.") 
+;(intersect '(1 3 5 7 9) '(2 3 5 7))
+
+(define (getElementAt mat x y)
+  (list-ref (list-ref mat x) y)
 )
+
+;P5 Calculating the determinant
+(define (det3x3 mat)
+	(-
+	
+	(+(+
+ 		(((getElementAt mat 0 0)(getElementAt mat 1 1))(getElementAt mat 2 2))
+ 		(((getElementAt mat 0 1)(getElementAt mat 1 2))(getElementAt mat 2 0)))
+ 		(((getElementAt mat 0 2)(getElementAt mat 1 0))(getElementAt mat 2 1))
+	)
+
+  (+(+
+ 	(((getElementAt mat 2 0)(getElementAt mat 1 1))(getElementAt mat 0 2))
+ 	(((getElementAt mat 2 1)(getElementAt mat 1 2))(getElementAt mat 0 0)))
+ 	(((getElementAt mat 2 2)(getElementAt mat 1 0))(getElementAt mat 0 1)))
+
+  )
+)
+
+(det3x3 '((2 1 3) (4 1 2) (3 9 3)))
