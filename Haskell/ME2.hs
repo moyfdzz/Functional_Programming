@@ -5,14 +5,18 @@ module ME2 where
 -- Enigmas
 
 -- 1 - Analyze the code
-enigmaA :: [Int] -> [Int]
-enigmaA n = error "Not implemented yet."
+enigmaA :: [t] -> Int -> [(t, Int)] 
+enigmaA [] x = [] 
+enigmaA (x:xs) y = if even (length (xs)) 
+    then (x, length (x:xs) * y) : enigmaA (xs) y 
+    else enigmaA xs y
 
-enigmaB :: [Double] -> Double -> [(Bool, Bool)]
-enigmaB n x = error "Not implemented yet."
+enigmaB :: [Int] -> Int 
+enigmaB [] = 0 
+enigmaB (x:y) = x * 2
 
-enigmaC :: [Int] -> Int -> Int
-enigmaC n x = error "Not implemented yet."
+enigmaC :: [Int] -> [Int] -> Int 
+enigmaC v w = sum (filter (>0) (map (\(x, y) -> x + y) (zip v w)))
 
 -- Problemas
 

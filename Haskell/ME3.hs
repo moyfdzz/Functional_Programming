@@ -5,17 +5,19 @@ module ME3 where
 -- Enigmas
     
 -- 1 - Analyze the code
-enigmaA :: [Int] -> [Int]
-enigmaA n = error "Not implemented yet."
-    
-enigmaB :: [Double] -> Double -> [(Bool, Bool)]
-enigmaB n x = error "Not implemented yet."
-    
-enigmaC :: [Int] -> Int -> Int
-enigmaC n x = error "Not implemented yet."
-    
-enigmaD :: Char -> [(Char, Char)] -> [Char]
-enigmaD n x = error "Not implemented yet."
+enigmaA :: Int -> Int -> [ Int ]
+enigmaA 0 _ = []
+enigmaA _ 0 = []
+enigmaA n m = take ( m - n ) [ n ..]
+
+enigmaB :: ( Int , Int , [ Int ]) -> [ Int ]
+enigmaB (x , 0 , ( y : z ) ) = [x , 0 , y ]
+enigmaB (x , y , []) = [y , x ]
+enigmaB (x , y , z ) = filter ( > x * y ) z
+
+enigmaC :: [ t ] -> t
+enigmaC [] = error " Empty list ."
+enigmaC ( x : y : z ) = y
 
 -- Problemas
 

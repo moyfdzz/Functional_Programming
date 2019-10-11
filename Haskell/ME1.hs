@@ -5,17 +5,19 @@ module ME1 where
 -- Enigmas
     
 -- 1 - Analyze the code
-enigmaA :: [Int] -> [Int]
-enigmaA n = error "Not implemented yet."
+enigmaA :: [Int] -> [Int] 
+enigmaA x = (\x y -> map y x) x (\x -> x + 1)
     
-enigmaB :: [Double] -> Double -> [(Bool, Bool)]
-enigmaB n x = error "Not implemented yet."
-    
-enigmaC :: [Int] -> Int -> Int
-enigmaC n x = error "Not implemented yet."
-    
-enigmaD :: Char -> [(Char, Char)] -> [Char]
-enigmaD n x = error "Not implemented yet."
+enigmaB :: [Double] -> Double -> [(Bool , Bool)] 
+enigmaB x y = zip (map (> y) x) (map (< y) x)
+
+enigmaC :: [Int] -> Int -> Int 
+enigmaC [] x = x 
+enigmaC (x:xs) y = x * (enigmaC xs y)
+
+enigmaD :: Char -> [(Char , Char)] -> [Char] 
+enigmaD x [] = [x] 
+enigmaD x ((a, b):c) = a:b:(enigmaD b c)
     
 -- Problems
     
