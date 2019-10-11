@@ -27,9 +27,16 @@ sumElementsTree E = 0
 sumElementsTree (Tree node nodeLeft nodeRight) = node + (sumElementsTree nodeLeft) + (sumElementsTree nodeRight)
     
 -- 3 - Sorting a table
-sortTable :: [([Char], Int)] -> [([Char],Int)]
+insert:: ([Char],Int) -> [([Char],Int)] -> [([Char],Int)]
+insert x [] = [x]
+insert y (x:xs)
+    | snd y < snd x = y:(x:xs)
+    | otherwise = x: insert y xs
+
+sortTable :: [([Char],Int)] -> [([Char],Int)]
 sortTable [] = []
-sortTable tbl = error "Not implemented yet."
+sortTable (x:xs) = insert x sortedRest
+    where sortedRest = sortTable xs
     
 -- 4 - Crossover in genetic algorithms
 myTake :: [Char] -> Int -> [Char]
@@ -48,3 +55,21 @@ crossover p1 p2 k =
     where
     offspring1 = (myTake p1 k) ++ (myDrop p2 k)
     offspring2 = (myTake p2 k) ++ (myDrop p1 k)
+
+-- 5 - Playing cards with data types
+data Color = Red | Black deriving Show
+data Suit = Clubs | Diamonds | Hearts | Spades deriving Show
+data Rank = Jack | Queen | King | Ace deriving Show
+data Card = Card (Rank, Suit) deriving Show
+
+getValue :: Card -> Int
+getValue (Card (Jack,_)) = 11
+getValue (Card (Queen,_)) = 12
+getValue (Card (King,_)) = 13
+getValue (Card (Ace,_)) = 1
+
+getColor :: Card -> Color
+getColor (Card (_,Hearts)) = Red
+getColor (Card (_,Diamonds)) = Red
+getColor (Card (_,Spades)) = Black
+getColor (Card (_,Clubs)) = Black

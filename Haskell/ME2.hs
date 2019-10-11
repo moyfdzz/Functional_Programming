@@ -17,9 +17,31 @@ enigmaC n x = error "Not implemented yet."
 -- Problemas
 
 -- 2 - Removing the last n elements in a list
-removeNElementsAux :: Int -> [t] -> [t]
-removeNElementsAux
+myTake :: Int -> [t] -> [t]
+myTake _ [] = []
+myTake 0 _ = []
+myTake n lst = (head lst) : myTake (n - 1) (tail lst)
 
 removeNElements :: Int -> [t] -> [t]
 removeNElements _ [] = []
-removeNElements n lst = 
+removeNElements n lst = myTake ((length lst) - n) lst
+
+-- 3 - QuickSort
+quickSort :: [Int] -> [Int]
+quickSort [] = []
+quickSort (x:y) = quickSort (filter (< x) y) ++ [x] ++ quickSort (filter (> x) y)
+
+-- 4 - Complex numbers
+data ComplexNumber = ComplexNumber Int Int deriving Show
+
+add :: ComplexNumber -> ComplexNumber -> ComplexNumber
+add (ComplexNumber r1 i1) (ComplexNumber r2 i2) = ComplexNumber (r1 + r2) (i1 + i2)
+
+multiplication :: ComplexNumber -> ComplexNumber -> ComplexNumber
+multiplication (ComplexNumber r1 i1) (ComplexNumber r2 i2) = ComplexNumber (r1 * r2) (i1 * i2)
+
+getReal :: ComplexNumber -> Int
+getReal (ComplexNumber r i) = r
+
+getImaginary :: ComplexNumber -> Int
+getImaginary (ComplexNumber r i) = i
